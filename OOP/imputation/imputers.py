@@ -1,18 +1,4 @@
-# Transformatory danych
-#
-# Zadanie 1.
-#
-# Zdfiniuje klasę `MeanImputer`, która będzie służyła do uzupełniania braków w danych,
-# na podstawie danych historycznych:
-#
-# a) `fit`, która jako argument wejściowy będzie przyjmowała listę wartości liczbowych i `None`,
-#     a jej wywołanie policzy średnią z liczbowych wartości w liście i zapisze wynik w atrybucie.
-#     Przed pójściem dalej przetestuje metodę.
-#
-# b) `transform`, która dla listy wejściowej zawierajacej wartości liczbowe oraz `None`,
-#    zwróci modyfikacje tej listy, w której zastapi wartości `None` wyliczoną wcześniej średnią.
-#
-# Zaprezentuj działanie metod.
+from collections import Counter
 
 class MeanImputer:
 
@@ -30,3 +16,21 @@ class MeanImputer:
         #     raise AttributeError("There is not 'mean' attribute. "
         #                          "You have to call `fit` method first.")
         return [el if el is not None else self.mean for el in x]
+
+
+class ModeImputer:
+
+    def __init__(self):
+        self.mode = None
+
+    def fit(self, x):
+        x_numbers_only = [el for el in x if el is not None]
+        self.mode = Counter(x_numbers_only).most_common(1)
+
+    def transform(self, x):
+        if self.mode is None:
+            raise AttributeError("You have to call `fit` method first.")
+        # if not hasattr(self, "mean"): # przy tworzeniu mean w fit
+        #     raise AttributeError("There is not 'mean' attribute. "
+        #                          "You have to call `fit` method first.")
+        return [el if el is not None else self.mode for el in x]
