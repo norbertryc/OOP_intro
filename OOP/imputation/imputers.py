@@ -25,7 +25,7 @@ class ModeImputer:
 
     def fit(self, x):
         x_numbers_only = [el for el in x if el is not None]
-        self.mode = Counter(x_numbers_only).most_common(1)
+        self.mode = Counter(x_numbers_only).most_common(1)[0][0]
 
     def transform(self, x):
         if self.mode is None:
