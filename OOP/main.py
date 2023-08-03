@@ -1,10 +1,11 @@
-from imputation.imputers import ModeImputer
+from ludzie.osoba import Biegacz, StrongMan, BiegaczSkomplikowany
 
 if __name__ == '__main__':
-
-    x = [1, 2, 3, 3, None]
-    imputer = ModeImputer()
-    # imputer.fit(x)
-    # print(imputer.mean)
-    y = imputer.transform([7, 5, None, None])
-    print(y)
+    jas = Biegacz("Jan", "Kowal")
+    stas = StrongMan("Stanisław", "Nowak")
+    print(jas.przedstaw_sie())
+    print(stas.przedstaw_sie())
+    michal = BiegaczSkomplikowany("Michał", "Malina")
+    michal.zrob_przebiezke(30)
+    print(michal.przedstaw_sie())
+    print(michal.poziom_szczescia)

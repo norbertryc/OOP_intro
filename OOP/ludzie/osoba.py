@@ -4,14 +4,36 @@ class Osoba:
         self.imie = imie
         self.nazwisko = nazwisko
         self.poziom_szczescia = 0
-        self.poprzedni_dystans = None
-        self.suma_dystansow = 0
 
     def przedstaw_sie(self):
         return f"{self.imie} {self.nazwisko}"
 
+
+class Biegacz(Osoba):
+
     def zrob_przebiezke(self, dystans):
-        if self.poprzedni_dystans is not None and dystans > self.poprzedni_dystans:
+        if dystans > 1:
+            self.poziom_szczescia += 1
+
+
+class StrongMan(Osoba):
+
+    def podnies_ciezar(self, ciezar):
+        if ciezar > 100:
+            self.poziom_szczescia += 1
+
+
+class BiegaczSkomplikowany(Osoba):
+
+    def __init__(self, imie, nazwisko):
+        self.imie = imie
+        self.nazwisko = nazwisko
+        self.poziom_szczescia = 0
+        self.poprzedni_dystans = None
+        self.suma_dystansow = 0
+
+    def zrob_przebiezke(self, dystans):
+        if dystans > 1:
             self.poziom_szczescia += 1  # self.poziom_szczescia = self.poziom_szczescia + 1
         self.poprzedni_dystans = dystans
 
