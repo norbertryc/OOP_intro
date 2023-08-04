@@ -26,11 +26,13 @@ class StrongMan(Osoba):
 class BiegaczSkomplikowany(Osoba):
 
     def __init__(self, imie, nazwisko):
-        self.imie = imie
-        self.nazwisko = nazwisko
-        self.poziom_szczescia = 0
+        super().__init__(imie, nazwisko)  # odnośnik do klasy, z której dziedziczymy
         self.poprzedni_dystans = None
         self.suma_dystansow = 0
+
+    def przedstaw_sie(self):
+        print(super().przedstaw_sie())
+        print("Jestem skomplikowany")
 
     def zrob_przebiezke(self, dystans):
         if dystans > 1:
