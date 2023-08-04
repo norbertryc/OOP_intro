@@ -1,8 +1,9 @@
-from animals.animals import Dog
+from imputation.imputers import MeanImputer
 
 if __name__ == '__main__':
 
-    burek = Dog("Burek", 3)
-    burek.say_hi()
-    burek.voice()
+    x = [1,2,3,3, None]
+    imputer = MeanImputer()
+    imputer.fit(x)
+    print(imputer.transform([1, None, 4]))
 
